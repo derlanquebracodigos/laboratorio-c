@@ -1,0 +1,410 @@
+/* ==========================================================
+   Laboratório C — estilos
+   Tema escuro inspirado em editores de código modernos.
+   Sem imagens e sem fontes externas, para economizar dados.
+   ========================================================== */
+
+:root {
+  --fundo: #0b1220;
+  --painel: #111a2e;
+  --painel-2: #16213a;
+  --borda: #24324f;
+  --texto: #e6edf7;
+  --texto-suave: #9fb0cc;
+  --destaque: #38bdf8;
+  --destaque-escuro: #0ea5e9;
+  --sucesso: #34d399;
+  --erro: #f87171;
+  --aviso: #fbbf24;
+  --editor-fundo: #0d1526;
+
+  --fonte-codigo: ui-monospace, "Cascadia Code", "Cascadia Mono", Consolas, "SF Mono", Menlo, "Roboto Mono", "DejaVu Sans Mono", monospace;
+  --tam-codigo: 16px;      /* 16px evita zoom automático ao tocar no editor (iOS) */
+  --altura-linha: 24px;
+  --raio: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+h1, h2, h3, p { margin: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--painel);
+  border-bottom: 1px solid var(--borda);
+}
+
+.marca { display: flex; align-items: center; gap: 12px; }
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--destaque), #6366f1);
+  color: #04121f;
+  font: 800 24px/1 var(--fonte-codigo);
+}
+
+.marca h1 { font-size: 1.25rem; line-height: 1.2; }
+.marca p { font-size: 0.85rem; color: var(--texto-suave); }
+
+.chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--borda);
+  font-size: 0.85rem;
+  color: var(--sucesso);
+  white-space: nowrap;
+}
+.chip.offline { color: var(--aviso); border-color: var(--aviso); }
+
+/* ---------- Layout principal ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .app { grid-template-columns: 260px minmax(0, 1fr); align-items: start; }
+}
+
+/* ---------- Exercícios ---------- */
+.exercicios {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 12px;
+  min-width: 0;
+}
+
+.exercicios h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texto-suave);
+  margin-bottom: 8px;
+}
+
+.exercicios ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.btn-exercicio {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.btn-exercicio:hover { background: var(--painel-2); }
+.btn-exercicio[aria-current="true"] {
+  background: var(--painel-2);
+  border-color: var(--destaque);
+}
+.btn-exercicio .num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--borda);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.btn-exercicio[aria-current="true"] .num { background: var(--destaque); color: #04121f; }
+
+/* Em telas estreitas, os exercícios viram uma fila rolável na horizontal */
+@media (max-width: 899px) {
+  .exercicios ol {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .btn-exercicio { width: auto; white-space: nowrap; border-color: var(--borda); }
+}
+
+/* ---------- Área de trabalho ---------- */
+.area { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+.objetivo {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-left: 4px solid var(--destaque);
+  border-radius: var(--raio);
+  padding: 14px 16px;
+}
+.objetivo h2 { font-size: 1.1rem; margin-bottom: 4px; }
+.objetivo p { color: var(--texto-suave); }
+.objetivo .dica { margin-top: 6px; color: var(--aviso); font-size: 0.92rem; }
+.objetivo .dica:empty { display: none; }
+
+.painel {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--painel-2);
+  border-bottom: 1px solid var(--borda);
+}
+
+.nome-arquivo {
+  font: 600 0.9rem var(--fonte-codigo);
+  color: var(--texto-suave);
+}
+
+.botoes { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- Botões (altura mínima de 48px para toque) ---------- */
+.btn {
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font: 600 1rem system-ui, sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-primario { background: var(--destaque); color: #04121f; }
+.btn-primario:hover:not(:disabled) { background: #7dd3fc; }
+
+.btn-secundario { background: var(--borda); color: var(--texto); }
+.btn-secundario:hover:not(:disabled) { background: #2f4066; }
+
+.btn-fantasma { background: transparent; color: var(--texto); border-color: var(--borda); }
+.btn-fantasma:hover:not(:disabled) { background: var(--painel); }
+
+/* ---------- Editor ---------- */
+.editor {
+  display: flex;
+  height: clamp(300px, 48vh, 560px);
+  background: var(--editor-fundo);
+}
+
+.numeros {
+  flex: none;
+  min-width: 3.2em;
+  padding: 12px 10px 72px 10px;
+  overflow: hidden;
+  text-align: right;
+  white-space: pre;
+  color: #5d7094;
+  background: #0a1120;
+  border-right: 1px solid var(--borda);
+  font: var(--tam-codigo)/var(--altura-linha) var(--fonte-codigo);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.codigo-area { position: relative; flex: 1; min-width: 0; }
+
+/* MODO SEGURO (padrão): só o <textarea>, com texto visível.
+   Funciona em qualquer navegador, mesmo sem cores. */
+#codigo {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 12px 16px 48px 16px;
+  font: var(--tam-codigo)/var(--altura-linha) var(--fonte-codigo);
+  letter-spacing: 0;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  resize: none;
+  overflow: auto;
+  background: transparent;
+  color: var(--texto);
+  caret-color: #ffffff;
+  outline: none;
+}
+#codigo::selection { background: rgba(56, 189, 248, 0.35); }
+
+.realce { display: none; }
+
+.codigo-area:focus-within { box-shadow: inset 0 0 0 2px var(--destaque); }
+
+/* MODO COLORIDO: o script.js liga esta classe só depois de conferir
+   que o <pre> colorido ficou exatamente embaixo do <textarea>.
+   O <pre> e o <textarea> precisam ter fonte, espaçamento e padding idênticos. */
+.codigo-area.colorido .realce {
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: 0;
+  border: 0;
+  padding: 12px 16px 72px 16px;
+  font: var(--tam-codigo)/var(--altura-linha) var(--fonte-codigo);
+  letter-spacing: 0;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  overflow: hidden;
+  color: var(--texto);
+  pointer-events: none;
+}
+.codigo-area.colorido .realce code { font: inherit; }
+.codigo-area.colorido #codigo {
+  z-index: 1;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cores do realce de sintaxe */
+.tk-comentario { color: #7f93b3; font-style: italic; }
+.tk-texto      { color: #86efac; }
+.tk-numero     { color: #fbbf24; }
+.tk-palavra    { color: #c4b5fd; }
+.tk-tipo       { color: #67e8f9; }
+.tk-funcao     { color: #93c5fd; }
+.tk-preproc    { color: #f9a8d4; }
+
+/* ---------- Mensagens e saída ---------- */
+.mensagem {
+  min-height: 2.6em;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  color: var(--texto-suave);
+  border-top: 1px solid var(--borda);
+}
+.mensagem.ok { color: var(--sucesso); }
+.mensagem.erro { color: var(--erro); }
+.mensagem.aviso { color: var(--aviso); }
+
+.saida {
+  min-height: 160px;
+  max-height: 50vh;
+  overflow: auto;
+  padding: 14px;
+  background: var(--editor-fundo);
+}
+.saida .vazio { color: var(--texto-suave); }
+
+.bloco {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-left: 4px solid var(--borda);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+}
+.bloco:last-child { margin-bottom: 0; }
+.bloco h3 { font-size: 0.85rem; margin-bottom: 6px; }
+.bloco pre {
+  margin: 0;
+  font: 0.95rem/1.5 var(--fonte-codigo);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.bloco p { color: var(--texto-suave); font-size: 0.92rem; }
+
+.bloco.sucesso { border-left-color: var(--sucesso); }
+.bloco.sucesso h3 { color: var(--sucesso); }
+.bloco.erro { border-left-color: var(--erro); }
+.bloco.erro h3 { color: var(--erro); }
+.bloco.aviso { border-left-color: var(--aviso); }
+.bloco.aviso h3 { color: var(--aviso); }
+.bloco.info { border-left-color: var(--destaque); }
+.bloco.info h3 { color: var(--destaque); }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 16px 24px;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.aviso-js { padding: 16px; background: var(--erro); color: #1b0000; }
+
+/* Quem prefere menos movimento não vê transições */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* Celulares: botões do editor ocupam a largura toda */
+@media (max-width: 599px) {
+  .botoes { width: 100%; }
+  .botoes .btn { flex: 1 1 calc(50% - 8px); padding: 0 10px; }
+  .botoes .btn-primario { flex-basis: 100%; }
+  .editor { height: clamp(260px, 45vh, 420px); }
+}
+
+/* ---------- Entrada de dados (scanf) ---------- */
+[hidden] { display: none !important; }
+
+.entrada-texto {
+  display: block;
+  width: 100%;
+  min-height: 84px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 0;
+  resize: vertical;
+  background: var(--editor-fundo);
+  color: var(--texto);
+  font: var(--tam-codigo)/var(--altura-linha) var(--fonte-codigo);
+  outline: none;
+}
+.entrada-texto:focus { box-shadow: inset 0 0 0 2px var(--destaque); }

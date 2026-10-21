@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Laboratório C</title>
+  <meta name="description" content="Aprenda a programar em C: escreva, compile e execute programas direto no navegador.">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="marca">
+      <span class="logo" aria-hidden="true">C</span>
+      <div>
+        <h1>Laboratório C</h1>
+        <p>Aprenda a programar em C</p>
+      </div>
+    </div>
+    <span id="status-rede" class="chip" role="status">Online</span>
+  </header>
+
+  <main class="app">
+
+    <!-- Lista de exercícios (os botões são criados pelo script.js) -->
+    <nav class="exercicios" aria-label="Lista de exercícios">
+      <h2>Exercícios</h2>
+      <ol id="lista-exercicios"></ol>
+    </nav>
+
+    <section class="area">
+
+      <!-- Objetivo do exercício selecionado -->
+      <article class="objetivo" aria-live="polite">
+        <h2 id="ex-titulo">Exercício</h2>
+        <p id="ex-objetivo"></p>
+        <p id="ex-dica" class="dica"></p>
+      </article>
+
+      <!-- Editor de código -->
+      <div class="painel">
+        <div class="barra">
+          <span class="nome-arquivo">main.c</span>
+          <div class="botoes">
+            <button type="button" id="btn-tab" class="btn btn-fantasma" title="Inserir 4 espaços de indentação">⇥ Tab</button>
+            <button type="button" id="btn-exemplo" class="btn btn-fantasma">Restaurar exemplo</button>
+            <button type="button" id="btn-salvar" class="btn btn-secundario">Salvar código</button>
+            <button type="button" id="btn-executar" class="btn btn-primario">▶ Executar código</button>
+          </div>
+        </div>
+
+        <div class="editor">
+          <div class="numeros" id="numeros" aria-hidden="true"></div>
+          <div class="codigo-area" id="codigo-area">
+            <pre class="realce" id="realce" aria-hidden="true"></pre>
+            <textarea id="codigo"
+                      aria-label="Editor de código C"
+                      spellcheck="false"
+                      autocomplete="off"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      wrap="off"></textarea>
+          </div>
+        </div>
+
+        <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+      </div>
+
+      <!-- Entrada de dados: só aparece quando o código usa scanf, fgets etc. -->
+      <div class="painel" id="painel-entrada" hidden>
+        <div class="barra">
+          <label class="nome-arquivo" for="entrada">Entrada do programa (para o scanf)</label>
+        </div>
+        <textarea id="entrada" class="entrada-texto" rows="3"
+                  aria-describedby="ajuda-entrada"
+                  spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                  placeholder="Exemplo: 7 5"></textarea>
+        <p id="ajuda-entrada" class="mensagem">Digite aqui, antes de executar, os valores que o programa vai ler, na mesma ordem do scanf. Separe por espaço ou use uma linha para cada valor. O programa lê tudo de uma vez: ele não pergunta durante a execução.</p>
+      </div>
+
+      <!-- Saída do programa -->
+      <div class="painel">
+        <div class="barra">
+          <span class="nome-arquivo">Saída</span>
+          <div class="botoes">
+            <button type="button" id="btn-limpar" class="btn btn-fantasma">Limpar saída</button>
+          </div>
+        </div>
+        <div id="saida" class="saida" role="log" aria-live="polite" tabindex="0">
+          <p class="vazio">Clique em “Executar código” para ver o resultado aqui.</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>A compilação é feita por um serviço online (Judge0) e <strong>precisa de internet</strong>.
+       Sem conexão, o site abre e você pode editar, mas não consegue executar o programa.
+       O código salvo fica apenas neste aparelho.</p>
+  </footer>
+
+  <noscript><p class="aviso-js">Ative o JavaScript no navegador para usar o Laboratório C.</p></noscript>
+  <script src="script.js" defer></script>
+</body>
+</html>
